@@ -84,3 +84,19 @@ Provide a repeatable workflow for analyzing web application access logs, identif
 * **jq/csvkit**: Parse CSV logs
 * **Python pandas**: Pattern analysis
 * **Splunk/ELK** (if available): Centralized logging
+
+### Sample Commands
+```bash
+# Extract unique IPs hitting login pages
+cat access.csv | grep "login" | cut -d',' -f4 | sort -u
+
+# Count requests per IP
+cat access.csv | cut -d',' -f4 | sort | uniq -c | sort -rn
+
+# Find POST requests to non-standard endpoints
+cat access.csv | awk -F',' '$3=="POST" && $2 !~ /login|xmlrpc/ {print}'
+```
+
+## Detection Rules
+
+See [docs/detection-rules.md](docs/detection-rules.md) for detailed rule logic.
