@@ -100,3 +100,31 @@ cat access.csv | awk -F',' '$3=="POST" && $2 !~ /login|xmlrpc/ {print}'
 ## Detection Rules
 
 See [docs/detection-rules.md](docs/detection-rules.md) for detailed rule logic.
+
+### Recon Detection
+```
+IF request_url CONTAINS (common_targets)
+AND user_ip NOT IN admin_ips
+THEN FLAG "RECON"
+```
+
+### Suspicious POST
+```
+IF request_type = POST
+AND request_url NOT IN (expected_post_endpoints)
+THEN FLAG "SUSPICIOUS_POST"
+```
+
+### Admin Anomaly
+```
+IF request_url CONTAINS "admin"
+AND user_ip NOT IN admin_ips
+THEN FLAG "ADMIN_ANOMALY"
+```
+
+### Privilege Escalation Attempt
+```
+IF request_url CONTAINS ("user-edit" OR "options" OR "theme-editor")
+AND user_ip NOT IN admin_ips
+THEN FLAG "PRIV_ESC"
+```
