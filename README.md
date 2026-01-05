@@ -55,3 +55,32 @@ Provide a repeatable workflow for analyzing web application access logs, identif
 * Plugin exploit paths
 * Suspicious POST bodies
 * File upload endpoints
+
+### 6. Detect Privilege Escalation
+* Unknown IPs accessing admin areas
+* REST API modification attempts
+* Admin-ajax privilege actions
+* Admin actions without login attempts
+
+### 7. Validate Findings
+* Confirm whether traffic is benign scanner noise
+* Document anomalies
+* Verify no indicators of compromise
+
+### 8. Document Outcome
+* Summary of findings
+* Indicators observed
+* Indicators not observed
+* Final assessment
+
+## Tools & Automation
+
+### IP Classification
+* **AbuseIPDB**: Check reputation scores
+* **GreyNoise**: Identify mass-scanning IPs
+* **IPinfo.io**: ASN/datacenter detection
+
+### Log Analysis
+* **jq/csvkit**: Parse CSV logs
+* **Python pandas**: Pattern analysis
+* **Splunk/ELK** (if available): Centralized logging
