@@ -14,3 +14,44 @@ Provide a repeatable workflow for analyzing web application access logs, identif
 * Security monitoring plugins active
 * Python 3.8+ (for automation scripts)
 * Familiarity with CSV parsing
+  
+## Workflow Overview
+
+### 1. Collect Logs
+* Export access logs in CSV format
+* Identify key fields: `timestamp`, `request_url`, `request_type`, `user_ip`, `status`, `user_agent`
+* **Retention period**: Document how long logs are available (typically 7-30 days)
+* **Export procedure**: Access via hosting dashboard > Logs > Export CSV
+
+### 2. Establish Baseline
+* Identify known-good IPs (admin, platform infrastructure)
+* Identify expected scanner noise patterns (datacenter ASNs, common endpoints)
+
+**Known-Good IPs to Document:**
+* Your admin IP(s) (home, VPN, work)
+* Platform infrastructure IPs
+* Security scanner IPs (from your plugins)
+* Known CDN/caching services (if applicable)
+
+**Expected Scanner Patterns:**
+* Common endpoints: `/wp-json/`, `/.well-known/`, `/sitemap.xml`
+* Legitimate crawlers: Googlebot, Bingbot (verify via reverse DNS)
+* ASN patterns: Document common datacenter ASNs (DigitalOcean, AWS, etc.)
+
+### 3. Classify IPs
+* Admin
+* Platform infrastructure
+* Legitimate crawlers
+* Commodity scanners
+* Unknown / needs review
+
+### 4. Detect Reconnaissance
+* Repeated hits to common target endpoints
+* Randomized query strings
+* POSTs from datacenter IPs
+
+### 5. Detect Exploitation Attempts
+* Encoded payloads
+* Plugin exploit paths
+* Suspicious POST bodies
+* File upload endpoints
