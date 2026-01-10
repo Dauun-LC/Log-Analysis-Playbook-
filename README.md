@@ -128,3 +128,83 @@ IF request_url CONTAINS ("user-edit" OR "options" OR "theme-editor")
 AND user_ip NOT IN admin_ips
 THEN FLAG "PRIV_ESC"
 ```
+
+## Thresholds & Tuning
+
+### Rate Limiting (for flagging)
+* **Login attempts**: >5 from single IP in 5 minutes
+* **404 errors**: >20 from single IP in 10 minutes
+* **POST requests**: >3 to unusual endpoints in 1 minute
+
+### False Positive Mitigation
+* Whitelist platform heartbeats
+* Whitelist legitimate plugin update checks
+* Exclude automated system processes
+
+### Tuning Notes
+* Adjust thresholds based on site traffic volume
+* Document all whitelist exceptions in baseline configuration
+
+## Response Actions
+
+### Low Severity (Scanner Noise)
+* Document in incident log
+* No blocking required (platform handles rate limiting)
+* Monitor for pattern changes
+
+### Medium Severity (Targeted Recon)
+* Verify IP via AbuseIPDB/GreyNoise
+* Check security plugins for automatic blocks
+* Consider additional firewall rules (if applicable)
+
+### High Severity (Exploitation Attempts)
+* **Immediate**: Verify no successful logins (check user activity logs)
+* **Short-term**: Force password reset for all admin accounts
+* **Document**: Capture full request details, preserve logs
+* **Escalate**: Report to hosting support if persistent
+
+### Critical (Confirmed Compromise)
+* Engage hosting support immediately
+* Initiate incident response plan
+* Preserve evidence (export all logs)
+* Run full malware scan
+
+## Validation Checklist
+
+* [ ] Verified IP reputation (AbuseIPDB score <50)
+* [ ] Checked for successful logins (User activity logs)
+* [ ] Reviewed security scan results (no malware detected)
+* [ ] Confirmed no new admin users created
+* [ ] Verified no plugin/theme modifications
+* [ ] Reviewed activity log for anomalies
+* [ ] Checked for unauthorized file uploads
+* [ ] Validated no privilege escalation (user roles unchanged)
+
+## Key Metrics
+
+Track these over time to identify trends:
+
+* **Unique scanner IPs per day**
+* **Login POST attempts per hour**
+* **404 error rate** (potential reconnaissance)
+* **POST requests to non-standard endpoints**
+* **Admin access from new IPs**
+* **Time to triage** (goal: <30 minutes for initial assessment)
+
+## Example Case Outcome
+
+* Scanner/bot traffic confirmed
+* No payloads detected
+* No brute force attempts
+* No file uploads
+* No admin access anomalies
+* No privilege escalation indicators
+* Traffic consistent with global scanner noise
+
+## Contributing
+
+This playbook is based on real-world log analysis. Contributions welcome via pull requests.
+
+## License
+
+MIT License - See LICENSE file for details.
