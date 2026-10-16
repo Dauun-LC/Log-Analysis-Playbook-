@@ -200,6 +200,7 @@ Track these over time to identify trends:
 * No admin access anomalies
 * No privilege escalation indicators
 * Traffic consistent with global scanner noise
+* A worked example is in [LabCommand-Threat-Reports](https://github.com/Dauun-LC/LabCommand-Threat-Reports).
 
 ## Contributing
 
