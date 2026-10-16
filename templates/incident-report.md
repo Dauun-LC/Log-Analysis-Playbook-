@@ -25,14 +25,15 @@ Notable findings include: [FINDING 1], [FINDING 2], [FINDING 3].
 
 ## Methodology
 
-[LOG SOURCE DESCRIPTION — redact specifics as appropriate] logs were exported 
-and triaged in [ANALYSIS ENVIRONMENT — redact as appropriate]. Own 
-infrastructure IPs, legitimate platform IPs, and verified crawlers were 
-filtered out, reducing [TOTAL LOG ENTRIES] rows to [NUMBER] unique blocked 
-attacker IPs. Each IP was categorized by behavioral pattern and enriched 
-using AbuseIPDB (confidence score, report count, source count, categories) 
-and VirusTotal (vendor detections, passive DNS, referring files, community 
-notes). IOCs were recorded in structured CSV format by category.
+## Methodology
+
+**Source:** [LOG SOURCE DESCRIPTION — redact specifics as appropriate], exported for [START DATE]–[END DATE]. Timestamps are in [TIMEZONE] as recorded in the logs.
+
+**Coverage:** The export contained [TOTAL LOG ENTRIES] entries. [State whether this is the full window or may reflect an export cap. If capped, note that hit counts are lower bounds.]
+
+**Analysis:** Logs were triaged in [ANALYSIS ENVIRONMENT — redact as appropriate]. Own infrastructure IPs, legitimate platform IPs, and verified crawlers were filtered out, reducing [TOTAL LOG ENTRIES] rows to [NUMBER] unique attacker IPs. Each IP was categorized by behavioral pattern and enriched using [ENRICHMENT SOURCES — e.g. AbuseIPDB, VirusTotal]. IOCs were recorded in structured CSV format by category.
+
+**Limitations:** [e.g. logs do not include request bodies; attribution is based on observed behavior and shared indicators only, not confirmed intent.]
 
 ---
 
