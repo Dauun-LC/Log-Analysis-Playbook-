@@ -12,7 +12,7 @@ Provide a repeatable workflow for analyzing web application access logs, identif
 ## Prerequisites
 * Access to hosting dashboard (Admin role)
 * Security monitoring plugins active
-* Python 3.8+ (for automation scripts)
+* Python 3.8+ (optional, for scripting)
 * Familiarity with CSV parsing
   
 ## Workflow Overview
@@ -75,15 +75,17 @@ Provide a repeatable workflow for analyzing web application access logs, identif
 
 ## Tools & Automation
 
+All enrichment is performed manually. See [tools/README.md](tools/README.md) for the full list.
+
 ### IP Classification
-* **AbuseIPDB**: Check reputation scores
-* **GreyNoise**: Identify mass-scanning IPs
-* **IPinfo.io**: ASN/datacenter detection
+* **AbuseIPDB**: reputation and report history
+* **VirusTotal**: vendor detections and passive DNS
+* **AlienVault OTX**: pulse lookups and indicator correlation
+* **IPinfo**: ASN and organization
 
 ### Log Analysis
-* **jq/csvkit**: Parse CSV logs
-* **Python pandas**: Pattern analysis
-* **Splunk/ELK** (if available): Centralized logging
+* **Google Sheets / Excel**: triage and IOC structuring
+* **VS Code**: raw log inspection
 
 ### Sample Commands
 ```bash
@@ -171,7 +173,7 @@ THEN FLAG "PRIV_ESC"
 
 ## Validation Checklist
 
-* [ ] Verified IP reputation (AbuseIPDB score <50)
+* [ ] Checked IP reputation (AbuseIPDB, VirusTotal) and recorded scores
 * [ ] Checked for successful logins (User activity logs)
 * [ ] Reviewed security scan results (no malware detected)
 * [ ] Confirmed no new admin users created
@@ -191,16 +193,15 @@ Track these over time to identify trends:
 * **Admin access from new IPs**
 * **Time to triage** (goal: <30 minutes for initial assessment)
 
-## Example Case Outcome
+## Example Case Outcome (Benign Scanner Traffic)
 
 * Scanner/bot traffic confirmed
 * No payloads detected
-* No brute force attempts
 * No file uploads
 * No admin access anomalies
 * No privilege escalation indicators
 * Traffic consistent with global scanner noise
-* A worked example is in [LabCommand-Threat-Reports](https://github.com/Dauun-LC/LabCommand-Threat-Reports).
+* For a case with active attack traffic, see [LabCommand-Threat-Reports](https://github.com/Dauun-LC/LabCommand-Threat-Reports).
 
 ## Contributing
 
