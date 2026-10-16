@@ -35,6 +35,9 @@ GeoIP and ASN lookup service. Used for autonomous system number (ASN)
 identification, organization attribution, and geographic context on 
 attacker IPs.
 
+### [GreyNoise](https://www.greynoise.io/)
+Mass-scanner and background-noise identification. Used to separate commodity internet scanning from targeted activity.
+
 ---
 
 ## Log Analysis and Data Handling
