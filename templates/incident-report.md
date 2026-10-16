@@ -151,7 +151,7 @@ observations apply:
 | Additional Categories | [NUMBER] | [NUMBER] | [Yes / No / Partial] |
 | **Total** | **[NUMBER]** | **[NUMBER]** | **[Yes / No / Partial]** |
 
-Full IOC data available in /iocs/ directory.
+*IOC data: see the /iocs/ directory when published (planned for reports from November 2026 onward).*
 
 ---
 
